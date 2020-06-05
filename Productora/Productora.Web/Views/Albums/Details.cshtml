@@ -1,0 +1,58 @@
+﻿@model Productora.Web.Models.Album
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Album</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Artist.StageName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Artist.StageName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AlbumName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AlbumName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AlbumDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AlbumDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AlbumRelease)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AlbumRelease)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AlbumCover)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AlbumCover)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

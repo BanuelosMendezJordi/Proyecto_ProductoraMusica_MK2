@@ -1,0 +1,161 @@
+﻿
+@{
+    ViewBag.Title = "Inicio";
+}
+
+    <body class="Gradient" id="Sitebody">
+        <section id="Title">
+            <div class="container-fluid p-0 text-center text-white" style="margin-top:110px; margin-bottom:150px;">
+                <div>
+                    <img src="~/Content/img/Interface/Logo_BR.png" width="250" />
+                    <div class="py-3"></div>
+                    <div class="row justify-content-center">
+                        <div class="col-8">
+                            <h1>Explora la diversidad de obras musicales que ofrecen miles de artistas</h1>
+                        </div>
+                    </div>
+                    <div class="py-2"></div>
+                    <div data-spy="scroll" data-target="#Sitebody" data-offset="0">
+                        <a href="#About_Section" class="btn btn-success rounded-pill btn-lg" style="width:200px;"><h4>Saber más</h4></a>
+                        <a href="#Contact_Section" class="btn btn-danger rounded-pill btn-lg" style="width:200px;"><h4>Contactar</h4></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        @*Acerca*@
+        <section id="About_Section">
+            <div class="container-fluid bg-white">
+                <div class="py-2"></div>
+                <h1 class="text-center">Consulta las funciones y beneficios</h1>
+                <div style="margin-left:60px;">
+                    <div class="py-2"></div>
+                    <h2 class="text-danger">Conoce</h2>
+                    <div class="row">
+                        <div class="col-md-6 text-justify">
+                            <p style="font-size:x-large">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+                        </div>
+                        <div class="col-md-5">
+                            <div id="carouselExampleSlidesOnly" class="carousel slide carousel-fade border border-info rounded" data-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img src="~/Content/img/Interface/Record_PLayer.jpg" class="d-block w-100" alt="...">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="~/Content/img/Interface/Girl_Headphones.jpg" class="d-block w-100" alt="...">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="py-4"></div>
+                    <h2 class="text-primary">Comparte</h2>
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div id="carouselExampleSlidesOnly" class="carousel slide carousel-fade border border-info rounded" data-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img src="~/Content/img/Interface/Man_Guitar.jpg" class="d-block w-100" alt="...">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="~/Content/img/Interface/Girl_Guitar.jpg" class="d-block w-100" alt="...">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 text-justify">
+                            <p style="font-size:x-large">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+                        </div>
+                    </div>
+                    <div class="py-2"></div>
+                    <h2 class="text-success">Diviertete</h2>
+                    <div class="row">
+                        <div class="col-md-6 text-justify">
+                            <p style="font-size:x-large">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+                        </div>
+                        <div class="col-md-5">
+                            <div id="carouselExampleSlidesOnly" class="carousel slide carousel-fade border border-success rounded" data-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img src="~/Content/img/Interface/Audience_Concert.jpg" class="d-block w-100" alt="...">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="~/Content/img/Interface/DJ_Neon.jpg" class="d-block w-100" alt="...">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="py-4"></div>
+                </div>
+            </div>
+        </section>
+        @*Contacto*@
+    <section id="Contact_Section">
+        <div class="container-fluid bg-dark text-white">
+            <div class="py-2"></div>
+            <h1 class="text-center">Conocenos y permitenos saber como mejorar la página</h1>
+            <div class="py-2"></div>
+            <div class="form-group" style="margin-left:60px; margin-right:130px;">
+                <div class="row">
+                    <div class="col">
+                        <label for="exampleFormControlInput1">Nombre</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Ingresa tu nombre">
+                    </div>
+                    <div class="col">
+                        <label for="exampleFormControlInput1">Apellido</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Ingresa tus apellidos">
+                    </div>
+                </div>
+                <div class="py-2"></div>
+                <div class="row">
+                    <div class="col">
+                        <label for="exampleFormControlInput1">Correo electrónico</label>
+                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Correo@mail.com">
+                    </div>
+                    <div class="col">
+                        <label for="exampleFormControlInput1">País</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Ingresa tu Pais (opcional)">
+                    </div>
+                </div>
+                <div class="py-2"></div>
+                <div class="row">
+                    <div class="col">
+                        <label for="exampleFormControlTextarea1">Mensaje</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" style="resize:none;" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="py-2"></div>
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <a class="btn btn-info btn-lg">Enviar</a>
+                    </div>
+                </div>
+                <div class="py-4"></div>
+                <h2 class="text-center">Nunca es muy pronto para comenzar</h2>
+                <div class="py-2"></div>
+                <div class="row">
+                    <div class="col-md-5">
+                        <div id="carouselExampleSlidesOnly" class="carousel slide carousel-fade border border-success rounded" data-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img src="~/Content/img/Interface/Baby_Music.jpg" class="d-block w-100" alt="...">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="py-2"></div>
+                        <h4 class="text-center">Correos Electronicos de Contacto</h4>
+                        <div class="text-center py-2">
+                            <h5>jordi.banuelos17@tectijuana.edu.mx</h5>
+                            <h5>Carlos.Villanueva17@tectijuana.edu.mx</h5>
+                        </div>
+                    </div>
+                    <div class="py-4"></div>
+                </div>
+                <div class="py-3"></div>
+            </div>
+        </div>
+    </section>
+    </body>
+
