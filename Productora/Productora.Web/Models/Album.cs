@@ -18,7 +18,7 @@ namespace Productora.Web.Models
         [Display(Name = "Lanzamiento")]
         public DateTime AlbumRelease { get; set; }
         [Display(Name = "Carátula")]
-        public byte[] AlbumCover { get; set; }
+        public string Album_Cover { get; set; }
         public int ArtistId { get; set; }
         [ForeignKey("ArtistId")]
         public Artist Artist { get; set; }

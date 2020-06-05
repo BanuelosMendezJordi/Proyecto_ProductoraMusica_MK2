@@ -36,7 +36,7 @@
                             @Html.DisplayNameFor(model => model.AlbumRelease)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.AlbumCover)
+                            @Html.DisplayNameFor(model => model.Album_Cover)
                         </th>
                         <th></th>
                     </tr>
@@ -57,7 +57,10 @@
                                 @Html.DisplayFor(modelItem => item.AlbumRelease)
                             </td>
                             <td>
-                                <a> <img style="width:100%; height:170px;" src="@Url.Action("getimagen", "Albums", new{ id=item.Id})" alt="Imagen del album del artista"></a>
+                                @if (item.Album_Cover != null)
+                                {
+                                    <img src="~/Content/img/AlbumCovers/@item.Album_Cover" width="100" class="img-thumbnail"/>
+                                }
                             </td>
                             <td>
                                 @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |

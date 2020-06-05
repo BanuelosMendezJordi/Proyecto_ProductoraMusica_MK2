@@ -28,9 +28,25 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="@Url.Action("Index","Songs")">Canciones</a>
                 </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="@Url.Action("Index","Albums")">Albumes</a>
-                </li>
+                @if (User.IsInRole("Admin"))
+                {
+                    <li class="nav-item active">
+                        <a class="nav-link" href="@Url.Action("AllAlbums","Albums")">Albumes</a>
+                    </li>
+                }
+                @if (User.IsInRole("Artist"))
+                {
+                    <li class="nav-item active">
+                        <a class="nav-link" href="@Url.Action("Index","Albums")">Albumes</a>
+                    </li>
+                }
+
+                @if (User.IsInRole("Admin"))
+                {
+                    <li class="nav-item active">
+                        <a class="nav-link" href="@Url.Action("Index","Users")">Usuarios</a>
+                    </li>
+                }
             </ul>
             <span class="navbar-text">
                 @Html.Partial("_LoginPartial")

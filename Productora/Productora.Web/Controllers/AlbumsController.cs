@@ -10,6 +10,7 @@ using System.Net;
 using System.Web;
 using System.Web.Helpers;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using Productora.Web.Models;
 
 namespace Productora.Web.Controllers
@@ -18,11 +19,18 @@ namespace Productora.Web.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        public ActionResult AllAlbums()
+        {
+            var albums = db.Albums.Include(o => o.Artist).Include(u => u.Artist.ApplicationUser).ToList();
+            return View(albums);
+        }
         // GET: Albums
         public ActionResult Index()
         {
-            var albums = db.Albums.Include(a => a.Artist);
-            return View(albums.ToList());
+            var user = User.Identity.GetUserId();
+            var ar = db.Artists.Where(o => o.UserId == user).FirstOrDefault();
+            var albums = db.Albums.Include(a => a.Artist).Where(p => p.ArtistId == ar.Id).ToList();
+            return View(albums);
         }
 
         // GET: Albums/Details/5
@@ -52,35 +60,25 @@ namespace Productora.Web.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,AlbumName,AlbumDescription,AlbumRelease,AlbumCover,ArtistId")] Album album)
+        public ActionResult Create(Album album, HttpPostedFileBase hpb)
         {
-            HttpPostedFileBase FileBase = Request.Files[0];
 
-            if (FileBase.ContentLength == 0)
-            {
-                ModelState.AddModelError("Imagen", "Es necesario seleccionar una imagen");
-            }
-
-            else
-            {
-                if (FileBase.FileName.EndsWith(".jpg"))
-                {
-                    WebImage imagenc = new WebImage(FileBase.InputStream);
-                    album.AlbumCover = imagenc.GetBytes();
-                }
-                else
-                {
-                    ModelState.AddModelError("imagen", "El sistema unicamente acepta imagenes con formato jpg");
-                }
-            }
             if (ModelState.IsValid)
             {
+                if (hpb != null)
+                {
+                    string pictureName = System.IO.Path.GetFileName(hpb.FileName);
+                    string picturePath = "~/Content/img/AlbumCovers/" + album.AlbumName + "_" + pictureName;
+                    hpb.SaveAs(Server.MapPath(picturePath));
+                    album.Album_Cover = album.AlbumName + "_" + pictureName;
+                }
+                var userId = User.Identity.GetUserId();
+                var art = db.Artists.Where(a => a.UserId== userId).FirstOrDefault();
+                album.ArtistId = art.Id;
                 db.Albums.Add(album);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-            ViewBag.ArtistId = new SelectList(db.Artists, "Id", "StageName", album.ArtistId);
             return View(album);
         }
 
@@ -96,7 +94,6 @@ namespace Productora.Web.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ArtistId = new SelectList(db.Artists, "Id", "StageName", album.ArtistId);
             return View(album);
         }
 
@@ -107,36 +104,12 @@ namespace Productora.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,AlbumName,AlbumDescription,AlbumRelease,AlbumCover,ArtistId")] Album album)
         {
-            Album _album = new Album();
-
-            HttpPostedFileBase FileBase = Request.Files[0];
-
-            if (FileBase.ContentLength == 0)
-            {
-                _album = db.Albums.Find(album.Id);
-                album.AlbumCover = _album.AlbumCover;
-            }
-            else
-            {
-                if (FileBase.FileName.EndsWith(".jpg"))
-                {
-                    WebImage imagec = new WebImage(FileBase.InputStream);
-                    album.AlbumCover = imagec.GetBytes();
-                }
-                else
-                {
-                    ModelState.AddModelError("imagen", "El sistema unicamente acepta imagenes con formato jpg");
-                }
-            }
             if (ModelState.IsValid)
             {
-                db.Entry(_album).State = EntityState.Detached;
-                db.Entry(album).State = EntityState.Detached;
                 db.Entry(album).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ArtistId = new SelectList(db.Artists, "Id", "StageName", album.ArtistId);
             return View(album);
         }
 
@@ -173,18 +146,6 @@ namespace Productora.Web.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
-        }
-        public ActionResult GetImagen(int id)
-        {
-            Album albumC = db.Albums.Find(id);
-            byte[] byteImage = albumC.AlbumCover;
-            MemoryStream memoryStream = new MemoryStream(byteImage);
-            Image imagec = Image.FromStream(memoryStream);
-            memoryStream = new MemoryStream();
-            imagec.Save(memoryStream, ImageFormat.Jpeg);
-            memoryStream.Position = 0;
-
-            return File(memoryStream, "image/jpg");
         }
     }
 }

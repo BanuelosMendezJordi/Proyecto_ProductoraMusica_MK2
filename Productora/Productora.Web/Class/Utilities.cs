@@ -38,10 +38,16 @@ namespace Productora.Web.Class
         internal static void CheckClientDefault()
         {
             var clientdb = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
-            var userClient = clientdb.FindByEmail("Artista@mail.com");
+            var userClient = clientdb.FindByName("Artista@mail.com");
             if (userClient == null)
             {
                 CreateUserAsp("Artista@mail.com", "QWERTY", "Artist");
+                userClient = clientdb.FindByName("Artista@mail.com");
+                var artist = new Artist{
+                    UserId = userClient.Id,
+                };
+                db.Artists.Add(artist);
+                db.SaveChanges();
             }
         }
         public static void CreateUserAsp(string email, string password, string rol)
