@@ -53,7 +53,7 @@
                     </dt>
 
                     <dd>
-                        @Html.DisplayFor(model => model.AlbumCover)
+                        <img src="@Url.Action("getimagen", "Albums", new{ id=Model.Id})" />
                     </dd>
 
                 </dl>

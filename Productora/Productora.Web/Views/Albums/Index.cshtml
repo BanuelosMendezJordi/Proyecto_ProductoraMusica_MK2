@@ -57,7 +57,7 @@
                                 @Html.DisplayFor(modelItem => item.AlbumRelease)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.AlbumCover)
+                                <a> <img style="width:100%; height:170px;" src="@Url.Action("getimagen", "Albums", new{ id=item.Id})" alt="Imagen del album del artista"></a>
                             </td>
                             <td>
                                 @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
