@@ -32,7 +32,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.artimg)
+            <img src="@Url.Action("getimagen", "Artists", new{ id=Model.Id})" />
         </dd>
 
     </dl>

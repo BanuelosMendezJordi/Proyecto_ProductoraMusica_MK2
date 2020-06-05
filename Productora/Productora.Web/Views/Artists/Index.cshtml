@@ -39,7 +39,7 @@
             @Html.DisplayFor(modelItem => item.Email)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.artimg)
+            <a> <img style="width:100%; height:170px;" src="@Url.Action("getimagen", "Artists", new{ id=item.Id})" alt="Imagen del artista"></a>
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

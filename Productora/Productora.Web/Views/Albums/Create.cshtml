@@ -16,7 +16,7 @@
                     <div class="py-2"></div>
                 </div>
                 <div class="card-body">
-                    @using (Html.BeginForm())
+                    @using (Html.BeginForm("Create", "Albums", FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
                         @Html.AntiForgeryToken()
 
@@ -50,7 +50,8 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.AlbumCover, htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
-                                    <input type="file" name="AlbumCover" value="form-control"/>
+                                    <input type="file" name="AlbumCover" value="form-control" />
+                                    @Html.ValidationMessageFor(model => model.AlbumCover, "", new { @class = "text-danger" })
                                 </div>
                             </div>
 
