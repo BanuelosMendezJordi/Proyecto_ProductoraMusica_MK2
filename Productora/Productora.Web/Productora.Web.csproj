@@ -218,6 +218,7 @@
     <Content Include="Content\img\Interface\Microphone.jpg" />
     <Content Include="Content\img\Interface\Piano.jpg" />
     <Content Include="Content\img\Interface\Record_PLayer.jpg" />
+    <Content Include="Content\img\Interface\vinyl-1595847_1280.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />

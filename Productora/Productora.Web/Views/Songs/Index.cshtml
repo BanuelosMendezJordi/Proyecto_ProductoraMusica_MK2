@@ -1,17 +1,17 @@
 ﻿@model IEnumerable<Productora.Web.Models.Song>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Canciones";
 }
-
-<h2>Index</h2>
 
 <head>
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.css">
 </head>
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<div class="text-center" style="margin-top:80px;">
+    <h1>Lista de Canciones</h1>
+    <a href="@Url.Action("Create","Songs")" class="btn btn-success rounded-circle" style="font-weight:bold">+</a>
+</div>
+
 <table class="table" id="Songs">
     <thead>
         <tr>

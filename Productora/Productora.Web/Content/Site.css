@@ -4,6 +4,18 @@
     background-image: linear-gradient(90deg, purple, darkslateblue, deepskyblue, hotpink);
 }
 
+.Gradient_Album {
+    animation: movingBG 15s infinite;
+    background-size: 200%;
+    background-image: linear-gradient(90deg, black, midnightblue);
+}
+
+.Gradient_Artist {
+    animation: movingBG 15s infinite;
+    background-size: 200%;
+    background-image: linear-gradient(90deg, cyan, mediumgreen);
+}
+
 @keyframes movingBG{
     0%{
         background-position: 0%, 50%;
