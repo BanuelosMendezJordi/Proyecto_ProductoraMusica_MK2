@@ -74,7 +74,8 @@ namespace Productora.Web.Controllers
                 }
                 var userId = User.Identity.GetUserId();
                 var art = db.Artists.Where(a => a.UserId== userId).FirstOrDefault();
-                album.ArtistId = art.Id;
+                ViewBag.ArtistId = new SelectList(db.Artists, "Id", "StageName", album.ArtistId);
+               // album.ArtistId = art.Id;
                 db.Albums.Add(album);
                 db.SaveChanges();
                 return RedirectToAction("Index");

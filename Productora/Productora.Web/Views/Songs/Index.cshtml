@@ -54,9 +54,17 @@
                     @Html.DisplayFor(modelItem => item.SongGenre)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a href="@Url.Action("Edit","Songs")" class="btn btn-info">Editar</a>
+                        <a href="@Url.Action("Details","Songs")" class="btn btn-success">Detalles</a>
+                        <a href="@Url.Action("Delete","Songs")" class="btn btn-danger">Eliminar</a>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("Details","Songs")" class="btn btn-success">Detalles</a>
+                    }
+
                 </td>
             </tr>
         }

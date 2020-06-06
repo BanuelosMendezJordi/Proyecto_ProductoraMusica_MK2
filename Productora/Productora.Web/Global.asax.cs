@@ -18,7 +18,7 @@ namespace Productora.Web
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             this.CheckRoles();
             Utilities.CheckSuperUser();
-            Utilities.CheckClientDefault();
+            //Utilities.CheckClientDefault();
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
         private void CheckRoles()

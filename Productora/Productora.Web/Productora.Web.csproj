@@ -210,6 +210,18 @@
     <Compile Include="Migrations\202006051820204_Prueba.Designer.cs">
       <DependentUpon>202006051820204_Prueba.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006052003382_ViewModel.cs" />
+    <Compile Include="Migrations\202006052003382_ViewModel.Designer.cs">
+      <DependentUpon>202006052003382_ViewModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006052027340_Imagen.cs" />
+    <Compile Include="Migrations\202006052027340_Imagen.Designer.cs">
+      <DependentUpon>202006052027340_Imagen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006052029399_ImagenString.cs" />
+    <Compile Include="Migrations\202006052029399_ImagenString.Designer.cs">
+      <DependentUpon>202006052029399_ImagenString.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Album.cs" />
@@ -400,7 +412,6 @@
     <Content Include="Views\Albums\Details.cshtml" />
     <Content Include="Views\Albums\Edit.cshtml" />
     <Content Include="Views\Albums\Index.cshtml" />
-    <Content Include="Views\Artists\Create.cshtml" />
     <Content Include="Views\Artists\Delete.cshtml" />
     <Content Include="Views\Artists\Details.cshtml" />
     <Content Include="Views\Artists\Edit.cshtml" />
@@ -413,10 +424,12 @@
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Users\Create.cshtml" />
     <Content Include="Views\Albums\AllAlbums.cshtml" />
+    <Content Include="Views\Artists\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\img\AlbumCovers\" />
+    <Folder Include="Content\img\ArtistsPictures\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -447,6 +460,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006051820204_Prueba.resx">
       <DependentUpon>202006051820204_Prueba.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006052003382_ViewModel.resx">
+      <DependentUpon>202006052003382_ViewModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006052027340_Imagen.resx">
+      <DependentUpon>202006052027340_Imagen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006052029399_ImagenString.resx">
+      <DependentUpon>202006052029399_ImagenString.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

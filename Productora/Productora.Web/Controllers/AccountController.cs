@@ -154,7 +154,7 @@ namespace Productora.Web.Controllers
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 Utilities.CreateUserAsp(user.Email, model.Password, "Artist");
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Principal");
             }
 
             // Si llegamos a este punto, es que se ha producido un error y volvemos a mostrar el formulario
@@ -381,7 +381,7 @@ namespace Productora.Web.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Principal");
         }
 
         //
@@ -438,7 +438,7 @@ namespace Productora.Web.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Principal");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult

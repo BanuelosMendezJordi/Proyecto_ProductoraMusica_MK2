@@ -34,13 +34,12 @@
                         <a class="nav-link" href="@Url.Action("AllAlbums","Albums")">Albumes</a>
                     </li>
                 }
-                @if (User.IsInRole("Artist"))
+                else
                 {
                     <li class="nav-item active">
-                        <a class="nav-link" href="@Url.Action("Index","Albums")">Albumes</a>
+                        <a class="nav-link" href="@Url.Action("Index", "Albums")">Albumes</a>
                     </li>
                 }
-
                 @if (User.IsInRole("Admin"))
                 {
                     <li class="nav-item active">

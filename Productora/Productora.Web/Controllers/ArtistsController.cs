@@ -10,6 +10,9 @@ using System.Net;
 using System.Web;
 using System.Web.Helpers;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Productora.Web.Class;
 using Productora.Web.Models;
 
 namespace Productora.Web.Controllers
@@ -50,36 +53,37 @@ namespace Productora.Web.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,StageName,Email,artimg")] Artist artist)
+        public ActionResult Create(UserViewModel vm, HttpPostedFileBase artimg)
         {
-            HttpPostedFileBase FileBase = Request.Files[0];
-
-            if (FileBase.ContentLength == 0)
-            {
-                ModelState.AddModelError("Imagen", "Es necesario seleccionar una imagen");
-            }
-
-            else
-            {
-                if (FileBase.FileName.EndsWith(".jpg"))
-                {
-                    WebImage imagena = new WebImage(FileBase.InputStream);
-                    artist.artimg = imagena.GetBytes();
-                }
-                else
-                {
-                    ModelState.AddModelError("imagen", "El sistema unicamente acepta imagenes con formato jpg");
-                }
-            }
 
             if (ModelState.IsValid)
             {
+                Utilities.CreateUserAsp(vm.Email, vm.Password, "Artist");
+                var artistdb = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+                var userartist = artistdb.FindByName(vm.Email);
+
+                if (artimg != null)
+                {
+                    var perfil = System.IO.Path.GetFileName(artimg.FileName);
+                    var direccion = "~/Content/img/ArtistsPictures/" + vm.Email + "_" + perfil;
+                    artimg.SaveAs(Server.MapPath(direccion));
+                    vm.artimg = vm.Email + "_" + perfil;
+                }
+
+                var artist = new Artist
+                {
+                    FirstName = vm.FirstName,
+                    LastName = vm.LastName,
+                    StageName = vm.StageName,
+                    artimg = vm.artimg,
+                    UserId=userartist.Id
+                };
                 db.Artists.Add(artist);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(artist);
+            return View(vm);
         }
 
         // GET: Artists/Edit/5
@@ -104,31 +108,10 @@ namespace Productora.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,StageName,Email,artimg")] Artist artist)
         {
-            Artist _artist = new Artist();
-
-            HttpPostedFileBase FileBase = Request.Files[0];
-
-            if (FileBase.ContentLength == 0)
-            {
-                _artist = db.Artists.Find(artist.Id);
-                artist.artimg = _artist.artimg;
-            }
-            else
-            {
-                if (FileBase.FileName.EndsWith(".jpg"))
-                {
-                    WebImage imageA = new WebImage(FileBase.InputStream);
-                    artist.artimg = imageA.GetBytes();
-                }
-                else
-                {
-                    ModelState.AddModelError("imagen", "El sistema unicamente acepta imagenes con formato jpg");
-                }
-            }
+           
+            
             if (ModelState.IsValid)
             {
-                db.Entry(_artist).State = EntityState.Detached;
-                db.Entry(artist).State = EntityState.Detached;
                 db.Entry(artist).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -169,19 +152,6 @@ namespace Productora.Web.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
-        }
-
-        public ActionResult GetImagen(int id)
-        {
-            Artist artisti = db.Artists.Find(id);
-            byte[] byteImage = artisti.artimg;
-            MemoryStream memoryStream = new MemoryStream(byteImage);
-            Image imageA = Image.FromStream(memoryStream);
-            memoryStream = new MemoryStream();
-            imageA.Save(memoryStream, ImageFormat.Jpeg);
-            memoryStream.Position = 0;
-
-            return File(memoryStream, "image/jpg");
         }
     }
 }

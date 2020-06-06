@@ -41,7 +41,7 @@ namespace Productora.Web.Controllers
             {
                 if (userViewModel != null)
                 {
-                    Utilities.CreateUserAsp(userViewModel.Email, userViewModel.Password, userViewModel.RoleName);
+                    Utilities.CreateUserAsp(userViewModel.Email, userViewModel.Password, "Artist");
                     var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
                     var user = userManager.FindByName(userViewModel.Email);
                     var artist = new Artist();
