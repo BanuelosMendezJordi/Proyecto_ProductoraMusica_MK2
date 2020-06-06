@@ -15,34 +15,31 @@
                     <div class="card mb-3" style="max-width: 540px;">
                         <div class="row no-gutters">
                             <div class="col-md-4">
-                                <img src="..." class="card-img" alt="...">
+                                <img src="~/Content/img/ArtistsPictures/@Model.artimg" alt="..." class="card-img" height="152"/>
                             </div>
                             <div class="col-md-8">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                <div class="card-body bg-dark justify-content-center">
+                                    <h5>Nombre real</h5>
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            @Html.DisplayFor(model => model.FirstName)
+                                            @Html.DisplayFor(model => model.LastName)
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            <h5>Nombre artistico</h5>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="col-md-10">
+                                            @Html.DisplayFor(model => model.StageName)
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <dl class="dl-horizontal">
-                        <dt>
-                            @Html.DisplayNameFor(model => model.StageName)
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayFor(model => model.StageName)
-                        </dd>
-
-                        <dt>
-                            @Html.DisplayNameFor(model => model.artimg)
-                        </dt>
-
-                        <dd>
-                            <img src="@Url.Action("getimagen", "Artists", new{ id=Model.Id})" alt="Imagen del artista">
-                        </dd>
-                    </dl>
                 </div>
             </div>
         </div>

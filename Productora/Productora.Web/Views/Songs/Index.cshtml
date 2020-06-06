@@ -4,73 +4,83 @@
     ViewBag.Title = "Canciones";
 }
 
-<head>
-    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.css">
-</head>
-<div class="text-center" style="margin-top:80px;">
-    <h1>Lista de Canciones</h1>
-    <a href="@Url.Action("Create","Songs")" class="btn btn-success rounded-circle" style="font-weight:bold">+</a>
-</div>
+<body class="Gradient_Album">
+    <div class="container" style="margin-top:80px;">
+        <div class="card" style="width:70rem">
+            <div class="card-header bg-dark text-white text-center">
+                <h2>Canciones</h2>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <a href="@Url.Action("Create", "Songs")" class="btn btn-success rounded-circle" style="font-weight:bold">+</a>
+                }
+                else
+                {
+                    <div class="py-2"></div>
+                }
+            </div>
+            <div class="card-body" style="background-image:url(../../Content/img/Interface/Microphone.jpg); background-size:cover">
+                <table class="table bg-white text-center" id="Songstable">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.SongTitle)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.SongLength)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ReleaseYear)
+                            </th>
+                            <th>
+                                Album
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.SongGenre)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
 
-<table class="table" id="Songs">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Album.AlbumName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SongTitle)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SongLength)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ReleaseYear)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SongGenre)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SongTitle)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SongLength)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ReleaseYear)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Album.AlbumName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SongGenre)
+                                </td>
+                                <td>
+                                    @if (User.Identity.IsAuthenticated)
+                                    {
+                                        <a href="@Url.Action("Edit","Songs")" class="btn btn-info">Editar</a>
+                                        <a href="@Url.Action("Details","Songs")" class="btn btn-success">Detalles</a>
+                                        <a href="@Url.Action("Delete","Songs")" class="btn btn-danger">Eliminar</a>
+                                    }
+                                    else
+                                    {
+                                        <a href="@Url.Action("Details","Songs")" class="btn btn-success">Detalles</a>
+                                    }
 
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Album.AlbumName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SongTitle)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SongLength)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ReleaseYear)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SongGenre)
-                </td>
-                <td>
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <a href="@Url.Action("Edit","Songs")" class="btn btn-info">Editar</a>
-                        <a href="@Url.Action("Details","Songs")" class="btn btn-success">Detalles</a>
-                        <a href="@Url.Action("Delete","Songs")" class="btn btn-danger">Eliminar</a>
-                    }
-                    else
-                    {
-                        <a href="@Url.Action("Details","Songs")" class="btn btn-success">Detalles</a>
-                    }
-
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
-
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
 
@@ -78,7 +88,7 @@
     @Scripts.Render("~/bundles/jqueryval")
     <script>
         $(document).ready(function () {
-            $('#Songs').DataTable();
+            $('#Songstable').DataTable();
         });
     </script>
 }

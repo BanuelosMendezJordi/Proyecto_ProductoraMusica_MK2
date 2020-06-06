@@ -1,74 +1,68 @@
 ﻿@model Productora.Web.Models.Album
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Editar Album";
 }
+
 
 <body class="Gradient_Album">
     <div class="container" style="margin-top:80px;">
-        <div class="card">
-            <div class="card-header" style="background-image:url(../../Content/img/Interface/vinyl-1595847_1280.jpg); background-size:cover">
-                <div class="py-2"></div>
-                <div class="text-center text-white">
-                    <h1>Detalles</h1>
+        <div class="card" style="width:50rem">
+            <div class="card-header bg-dark text-white text-center">
+                <h2>Editar Album</h2>
+            </div>
+            <div class="card-body" style="background-image:url(../../Content/img/Interface/Microphone.jpg); background-size:cover">
+                <div class="text-white" style="margin-top:30px;">
+                    @using (Html.BeginForm("Edit", "Albums", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.Id)
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.AlbumName, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.AlbumName, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.AlbumName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.AlbumDescription, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.AlbumDescription, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.AlbumDescription, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.AlbumRelease, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.AlbumRelease, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.AlbumRelease, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Album_Cover, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    <img src="~/Content/img/AlbumCovers/@Model.Album_Cover" alt="..." height="152" />
+                                    <input type="file" name="imagenload" class="form-control-file"/>
+                                    @Html.ValidationMessageFor(model => model.Album_Cover, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Guardar" class="btn btn-success" />
+                                </div>
+                            </div>
+                        </div>
+                    }
                 </div>
-                <div class="py-2"></div>
-            </div>  Q
-            <div class="card-body">
-                @using (Html.BeginForm("Edit", "Albums", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                {
-                    @Html.AntiForgeryToken()
-
-                    <div class="form-horizontal">
-                        <h4>Album</h4>
-                        <hr />
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                        @Html.HiddenFor(model => model.Id)
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.AlbumName, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.AlbumName, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.AlbumName, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.AlbumDescription, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.AlbumDescription, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.AlbumDescription, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.AlbumRelease, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.AlbumRelease, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.AlbumRelease, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.Album_Cover, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                <a> <img style="width:100%; height:170px;" src="@Url.Action("getimagen", "Albums", new{ id=Model.Id})" alt="Imagen del album del artista"></a>
-                                <input type="file" name="imagenload" />
-                                @Html.ValidationMessageFor(model => model.Album_Cover, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-offset-2 col-md-10">
-                                <input type="submit" value="Save" class="btn btn-default" />
-                            </div>
-                        </div>
-                    </div>
-                }
             </div>
         </div>
     </div>
 </body>
-                <div>
-                    @Html.ActionLink("Back to List", "Index")
-                </div>
